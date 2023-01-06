@@ -9,7 +9,7 @@ import { GET_ME } from "../utils/queries"
 import { DELETE_BOOK } from "../utils/mutation"
 
 const SavedBooks = () => {
-  
+
   const { loading, data } = useQuery(GET_ME)
   const [deleteBook, { error }] = useMutation(DELETE_BOOK)
   const userData = data?.me || {}
@@ -30,6 +30,7 @@ const SavedBooks = () => {
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
+      
     } catch (err) {
       console.error(err);
     }
