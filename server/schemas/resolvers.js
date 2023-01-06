@@ -17,6 +17,10 @@ const resolvers = {
       throw new AuthenticationError('Not logged in')
     },
 
+    test: async (parent, args, context) => {
+      return context
+    }
+
   },
   Mutation: {
     createUser: async (parent, args) => {
