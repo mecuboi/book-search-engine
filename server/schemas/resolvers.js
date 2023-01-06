@@ -49,7 +49,21 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: {savedBooks: args.input}},
           { new: true, runValidators: true },
-        )
+        );
+        return updateUser
+      }
+
+      throw new AuthenticationError('Not logged in')
+    },
+
+    deleteBook: async (parent, args, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: {savedBooks: {bookId: args.bookId}}},
+          { new: true, runValidators: true },
+        );
+        return updateUser
       }
     }
   },
