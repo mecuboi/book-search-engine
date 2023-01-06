@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 // import { createUser } from '../utils/API';
-import { CREATE_USER } from '../../utils/mutation';
+import { CREATE_USER } from '../utils/mutation';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
@@ -36,7 +36,7 @@ const SignupForm = () => {
       });
     
       Auth.login(data.createUser.token);
-      
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
