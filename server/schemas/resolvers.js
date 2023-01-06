@@ -47,7 +47,7 @@ const resolvers = {
       if (context.user) {
         const updateUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: {savedBooks: args.input}},
+          { $addToSet: {savedBooks: args.savedBook}},
           { new: true, runValidators: true },
         );
         return updateUser
@@ -65,6 +65,8 @@ const resolvers = {
         );
         return updateUser
       }
+
+      throw new AuthenticationError('Not logged in')
     }
   },
 };
